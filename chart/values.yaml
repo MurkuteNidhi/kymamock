@@ -1,0 +1,29 @@
+global:
+  domain: c-4199fbe.kyma.ondemand.com
+  imagePullSecret:
+    {}
+srv:
+  bindings:
+    destination:
+      serviceInstanceName: 'destination'
+  image:
+    repository: nidhimurkute/mockserver-srv
+    tag: latest
+  resources:
+    limits:
+      ephemeral-storage: 1G
+      memory: 500M
+    requests:
+      ephemeral-storage: 1G
+      cpu: 500m
+      memory: 500M
+  health:
+    liveness:
+      path: /health
+    readiness:
+      path: /health
+destination:
+  serviceOfferingName: 'destination'
+  servicePlanName: 'lite'
+  parameters:
+    version: '1.0.0'
